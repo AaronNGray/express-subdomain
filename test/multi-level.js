@@ -57,8 +57,8 @@ describe('Multi-level tests', function () {
   //        example.com        //
   ///////////////////////////////
 
-  it('GET ' + config.urls.BASE_URL, function (done) {
-    request('http://'+ config.urls.BASE_URL, function (error, res, body) {
+  it('GET ' + config.urls.com.BASE_URL, function (done) {
+    request('http://'+ config.urls.com.BASE_URL, function (error, res, body) {
       expect(body).to.equal(responses.main['/']);
       done();
     });
@@ -68,15 +68,15 @@ describe('Multi-level tests', function () {
   //     v1.api.example.com    //
   ///////////////////////////////
 
-  it('GET ' + config.urls.V1_API_URL, function (done) {
-    request('http://' + config.urls.V1_API_URL, function (error, res, body) {
+  it('GET ' + config.urls.com.V1_API_URL, function (done) {
+    request('http://' + config.urls.com.V1_API_URL, function (error, res, body) {
       expect(body).to.equal(responses.api['/']);
       done();
     });
   });
 
-  it('GET ' + config.urls.V1_API_URL + '/users', function (done) {
-    request('http://' + config.urls.V1_API_URL + '/users', function (error, res, body) {
+  it('GET ' + config.urls.com.V1_API_URL + '/users', function (done) {
+    request('http://' + config.urls.com.V1_API_URL + '/users', function (error, res, body) {
       expect(body).to.equal( JSON.stringify(responses.api['/users']) );
       done();
     });

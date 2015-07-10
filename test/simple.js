@@ -6,6 +6,8 @@ var express = require('express');
 var subdomain = require('../');
 var config = require('./config.json');
 
+console.log("config = ", config);
+
 //////////////////////////////
 //    expected responses    //
 //////////////////////////////
@@ -57,8 +59,10 @@ describe('Simple tests', function () {
   //        example.com        //
   ///////////////////////////////
 
-  it('GET ' + config.urls.BASE_URL, function (done) {
-    request('http://'+ config.urls.BASE_URL, function (error, res, body) {
+  console.log("config.urls.com.BASE_URL = ", config.urls.BASE_URL);
+
+  it('GET ' + config.urls.com.BASE_URL, function (done) {
+    request('http://'+ config.urls.com.BASE_URL, function (error, res, body) {
       expect(body).to.equal(responses.main['/']);
       done();
     });
@@ -68,19 +72,80 @@ describe('Simple tests', function () {
   //      api.example.com      //
   ///////////////////////////////
 
-  it('GET ' + config.urls.API_URL, function (done) {
-    request('http://' + config.urls.API_URL, function (error, res, body) {
+  it('GET ' + config.urls.com.API_URL, function (done) {
+    request('http://' + config.urls.com.API_URL, function (error, res, body) {
       expect(body).to.equal(responses.api['/']);
       done();
     });
   });
 
-  it('GET ' + config.urls.API_URL + '/users', function (done) {
-    request('http://' + config.urls.API_URL + '/users', function (error, res, body) {
+  it('GET ' + config.urls.com.API_URL + '/users', function (done) {
+    request('http://' + config.urls.com.API_URL + '/users', function (error, res, body) {
       expect(body).to.equal( JSON.stringify(responses.api['/users']) );
       done();
     });
   });
+
+  ///////////////////////////////
+  //        example.org.uk     //
+  ///////////////////////////////
+
+  it('GET ' + config.urls.org_uk.BASE_URL, function (done) {
+    request('http://'+ config.urls.org_uk.API_URL, function (error, res, body) {
+      expect(body).to.equal(responses.main['/']);
+      done();
+    });
+  });
+
+  ///////////////////////////////
+  //      api.example.org.uk   //
+  ///////////////////////////////
+
+  it('GET ' + config.urls.org_uk.API_URL, function (done) {
+    request('http://' + config.urls.org_uk.API_URL, function (error, res, body) {
+      expect(body).to.equal(responses.api['/']);
+      done();
+    });
+  });
+
+  it('GET ' + config.urls.org_uk.API_URL + '/users', function (done) {
+    request('http://' + config.urls.org_uk.API_URL + '/users', function (error, res, body) {
+      expect(body).to.equal( JSON.stringify(responses.api['/users']) );
+      done();
+    });
+  });
+
+
+  ///////////////////////////////
+  //        localhost          //
+  ///////////////////////////////
+
+  it('GET ' + config.urls.localhost.BASE_URL, function (done) {
+    request('http://'+ config.urls.localhost.BASE_URL, function (error, res, body) {
+      expect(body).to.equal(responses.main['/']);
+      done();
+    });
+  });
+
+  ///////////////////////////////
+  //      api.localhost        //
+  ///////////////////////////////
+
+  it('GET ' + config.urls.localhost.API_URL, function (done) {
+    request('http://' + config.urls.localhost.API_URL, function (error, res, body) {
+      expect(body).to.equal(responses.api['/']);
+      done();
+    });
+  });
+
+  it('GET ' + config.urls.localhost.API_URL + '/users', function (done) {
+    request('http://' + config.urls.localhost.API_URL + '/users', function (error, res, body) {
+      expect(body).to.equal( JSON.stringify(responses.api['/users']) );
+      done();
+    });
+  });
+
+
 
   after(function(done) {
     server.close(function() {

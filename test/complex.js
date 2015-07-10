@@ -32,7 +32,7 @@ var responses = {
 //////////////////////////////
 //         routes           //
 //////////////////////////////
-var router = express.Router(); 
+var router = express.Router();
 var v1Router = express.Router();
 var v2Router = express.Router();
 
@@ -93,8 +93,8 @@ describe('Divide and Conquer tests', function () {
   //        example.com        //
   ///////////////////////////////
 
-  it('GET ' + config.urls.BASE_URL, function (done) {
-    request('http://'+ config.urls.BASE_URL, function (error, res, body) {
+  it('GET ' + config.urls.com.BASE_URL, function (done) {
+    request('http://'+ config.urls.com.BASE_URL, function (error, res, body) {
       expect(body).to.equal(responses.main['/']);
       done();
     });
@@ -104,10 +104,10 @@ describe('Divide and Conquer tests', function () {
   //      api.example.com      //
   ///////////////////////////////
 
-  it('GET ' + config.urls.API_URL + ' * INVALID USER *', function (done) {
+  it('GET ' + config.urls.com.API_URL + ' * INVALID USER *', function (done) {
     //custom header for testing purposes
     var opts = {
-      url: 'http://' + config.urls.API_URL,
+      url: 'http://' + config.urls.com.API_URL,
       headers: {
         'invalid': 'true'
       }
@@ -120,8 +120,8 @@ describe('Divide and Conquer tests', function () {
 
   });
 
-  it('GET ' + config.urls.API_URL, function (done) {
-    request('http://' + config.urls.API_URL, function (error, res, body) {
+  it('GET ' + config.urls.com.API_URL, function (done) {
+    request('http://' + config.urls.com.API_URL, function (error, res, body) {
       expect(res.headers['valid']).to.be.equal('true');
       expect(body).to.equal(responses.api.main['/']);
       done();
@@ -132,10 +132,10 @@ describe('Divide and Conquer tests', function () {
   //    v1.api.example.com     //
   ///////////////////////////////
 
-  it('GET ' + config.urls.V1_API_URL + ' * INVALID USER *', function (done) {
+  it('GET ' + config.urls.com.V1_API_URL + ' * INVALID USER *', function (done) {
     //custom header for testing purposes
     var opts = {
-      url: 'http://' + config.urls.V1_API_URL,
+      url: 'http://' + config.urls.com.V1_API_URL,
       headers: {
         'invalid': 'true'
       }
@@ -148,16 +148,16 @@ describe('Divide and Conquer tests', function () {
 
   });
 
-  it('GET ' + config.urls.V1_API_URL, function (done) {
-    request('http://' + config.urls.V1_API_URL, function (error, res, body) {
+  it('GET ' + config.urls.com.V1_API_URL, function (done) {
+    request('http://' + config.urls.com.V1_API_URL, function (error, res, body) {
       expect(res.headers['valid']).to.be.equal('true');
       expect(body).to.equal(responses.api.v1['/']);
       done();
     });
   });
 
-  it('GET ' + config.urls.V1_API_URL + '/users', function (done) {
-    request('http://' + config.urls.V1_API_URL + '/users', function (error, res, body) {
+  it('GET ' + config.urls.com.V1_API_URL + '/users', function (done) {
+    request('http://' + config.urls.com.V1_API_URL + '/users', function (error, res, body) {
       expect(res.headers['valid']).to.be.equal('true');
       expect(body).to.equal( JSON.stringify(responses.api.v1['/users']) );
       done();
@@ -165,8 +165,8 @@ describe('Divide and Conquer tests', function () {
   });
 
   //curve ball..
-  it('GET c.b.a.' + config.urls.V1_API_URL, function (done) {
-    request('http://c.b.a.' + config.urls.V1_API_URL, function (error, res, body) {
+  it('GET c.b.a.' + config.urls.com.V1_API_URL, function (done) {
+    request('http://c.b.a.' + config.urls.com.V1_API_URL, function (error, res, body) {
       expect(res.headers['valid']).to.be.equal('true');
       expect(body).to.equal(responses.api.v1['/']);
       done();
@@ -180,7 +180,7 @@ describe('Divide and Conquer tests', function () {
   it('GET ' + config.urls.V2_API_URL + ' * INVALID USER *', function (done) {
     //custom header for testing purposes
     var opts = {
-      url: 'http://' + config.urls.V2_API_URL,
+      url: 'http://' + config.urls.com.V2_API_URL,
       headers: {
         'invalid': 'true'
       }
@@ -193,16 +193,16 @@ describe('Divide and Conquer tests', function () {
 
   });
 
-  it('GET ' + config.urls.V2_API_URL, function (done) {
-    request('http://' + config.urls.V2_API_URL, function (error, res, body) {
+  it('GET ' + config.urls.com.V2_API_URL, function (done) {
+    request('http://' + config.urls.com.V2_API_URL, function (error, res, body) {
       expect(res.headers['valid']).to.be.equal('true');
       expect(body).to.equal(responses.api.v2['/']);
       done();
     });
   });
 
-  it('GET ' + config.urls.V2_API_URL + '/users', function (done) {
-    request('http://' + config.urls.V2_API_URL + '/users', function (error, res, body) {
+  it('GET ' + config.urls.com.V2_API_URL + '/users', function (done) {
+    request('http://' + config.urls.com.V2_API_URL + '/users', function (error, res, body) {
       expect(res.headers['valid']).to.be.equal('true');
       expect(body).to.equal( JSON.stringify(responses.api.v2['/users']) );
       done();
@@ -210,8 +210,8 @@ describe('Divide and Conquer tests', function () {
   });
 
   //curve ball..
-  it('GET c.b.a.' + config.urls.V2_API_URL, function (done) {
-    request('http://c.b.a.' + config.urls.V2_API_URL, function (error, res, body) {
+  it('GET c.b.a.' + config.urls.com.V2_API_URL, function (done) {
+    request('http://c.b.a.' + config.urls.com.V2_API_URL, function (error, res, body) {
       expect(res.headers['valid']).to.be.equal('true');
       expect(body).to.equal(responses.api.v2['/']);
       done();
